@@ -1,5 +1,5 @@
 MANAGE_PY = python manage.py
-ROOT_DIR = fkzauth
+ROOT_DIR = consumerapp 
 
 MANAGE_OPTIONS = --noinput --traceback
 RUN_OPTIONS = --traceback
