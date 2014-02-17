@@ -12,7 +12,7 @@ Makefile command help
 The following commands are available
 
 - Running:
-	run:			Start a development server on http://127.0.0.1:8000
+	run:			Start a development server on http://127.0.0.1:8001
 	shell:			Start a development python shell on the current database
 
 - Preparation & compilation
@@ -44,7 +44,7 @@ help:
 # =======
 
 run: static compilemsg
-	$(MANAGE_PY) runserver $(RUN_OPTIONS) 8000
+	$(MANAGE_PY) runserver $(RUN_OPTIONS) 8001
 
 shell:
 	$(MANAGE_PY) shell
