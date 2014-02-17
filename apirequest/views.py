@@ -5,7 +5,7 @@ from requests_oauthlib import OAuth2Session
 #Oauth variables
 #These variables identify the application and are provided by Frankiz admins when you register the app
 client_id = "test"
-client_secret = "CWHpQb1d2j!oULsPQ:zt3ekStD7izej8VKTp!rl7zdPjdbDhg3Yz1@h?Q!HRFunDXugT@MXAaIk=J6FK7?KttPvkO:e2QQo=UJh9!tZ?y;4K4tdLPgnqcI=:JHjlS9cP"
+client_secret = "azertyuiop"
 #Uri where the client is redirected on this app once it has logged in on the auth site. This uri must be registered by Frankiz admins
 redirect_uri = "http://localhost:8001/apirequest/auth_code_given/"
 #Rights required by the application
