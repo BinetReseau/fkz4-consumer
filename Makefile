@@ -44,6 +44,7 @@ help:
 # =======
 
 run: static compilemsg
+	export DEBUG=1
 	$(MANAGE_PY) runserver $(RUN_OPTIONS) 8001
 
 shell:

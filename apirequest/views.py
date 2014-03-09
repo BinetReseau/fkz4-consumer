@@ -6,7 +6,7 @@ from requests_oauthlib import OAuth2Session
 #These variables identify the application and are provided by Frankiz admins when you register the app
 client_id = "test"
 client_secret = "azertyuiop"
-#Uri where the client is redirected on this app once it has logged in on the auth site. This uri must be registered by Frankiz admins
+#Uri where the client is redirected once it has logged in on the auth site. This uri must be registered by Frankiz admins
 redirect_uri = "http://localhost:8001/apirequest/auth_code_given/"
 #Rights required by the application
 #Possible rights are: read
@@ -14,11 +14,11 @@ scope = ['read']
 
 #Urls used to get the authorization and token
 auth_url = 'http://localhost:8000/o/authorize/'
-token_url = 'http://localhost:8000/o/token'
+token_url = 'http://localhost:8000/o/token/'
 
 def make_oauth_object(token = None):
 	if token:
-		return OAuth2Session(client_id, redirect_uri=redirect_uri, scope=scope, token = token)
+		return OAuth2Session(client_id, token = token)
 	else:
 		return OAuth2Session(client_id, redirect_uri=redirect_uri, scope=scope)
 
@@ -28,9 +28,9 @@ def index(request):
 	"""
 	#Logged in
 	if 'oauth_token' in request.session:
-		oauth = make_oauth_object(request.session(request.session['oauth_token']))
+		oauth = make_oauth_object(request.session['oauth_token'])
 		r = oauth.get('http://localhost:8000/api/student/1/.json')
-		return HttpResponse('Authenticated :) <br/>' + r)
+		return HttpResponse('Authenticated :) <br/>' + r.content.decode("utf-8"))
 	#Not logged in
 	else:
 		oauth = make_oauth_object()
@@ -42,7 +42,7 @@ def auth_code_given(request):
 	"""
 	View receiving the token and redirecting to the index after saving the token in the session
 	"""
-	authorization_code = request.GET.get('code')
+	authorization_code = request.build_absolute_uri(request.get_full_path())
 	oauth =  make_oauth_object()
 	token = oauth.fetch_token(token_url,
     	authorization_response=authorization_code, client_secret=client_secret)
