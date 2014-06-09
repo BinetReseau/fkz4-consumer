@@ -19,7 +19,7 @@ class Frankiz:
 			return OAuth2Session(client_id, redirect_uri=redirect_uri, scope=Frankiz.scope)
 
 	def authorization_url():
-		return auth_url
+		return Frankiz.auth_url
 
 
 
@@ -38,7 +38,7 @@ def index(request):
 	#Logged in
 	if 'oauth_token' in request.session:
 		oauth = Frankiz.make_oauth_object(request.session['oauth_token'])
-		r = oauth.get('http://localhost:8000/api/group/1/.json')
+		r = oauth.get('http://localhost:8000/api/student/id=1/.json')
 		return HttpResponse('Authenticated :) <br/>' + r.content.decode("utf-8"))
 	#Not logged in
 	else:
